@@ -46,19 +46,29 @@
 
         <div class="row green triviaScreen">
           
-          <div class="question"><h3>Who is the queen of england?</h3></div>
-          <div class="btn-group" role="group" aria-label="...">
-                  <button type="button" class="btn btn-default btnA">A</button>
-                  <button type="button" class="btn btn-default btnB">B</button>
-                  <button type="button" class="btn btn-default btnC">C</button>
-                  <button type="button" class="btn btn-default btnD">D</button>
-          </div> <!-- end button group -->
-
+          <div class="question1"><h3>What's my favorite car?</h3>
+          
+            <form class="question1Form">
+              <div class="radio">
+                <label><input type="radio" name="question1" value="Honda">Honda</label>
+              </div>
+              <div class="radio">
+                <label><input type="radio" name="question1" value="BMW">BMW</label>
+              </div>
+              <div class="radio">
+                <label><input type="radio" name="question1" value="Volvo">Volvo</label>
+              </div>
+            </form>
+          </div> <!-- end question1 div -->
+     
+        <button type="button" class="btn btn-default btnA">Submit Answers</button>
+        
         </div> <!-- end triviaScreen -->
       
         <div class="row yellow endScreen">
-          <h2>All Done!</h2>
+            <h3 class="scoreBoard"></h3>
           <button type="button" class="btn btn-default restartBtn">Restart</button>
+          
         </div> <!-- end endScreen -->
     </div><!--  end col-md-12 for mainContainer -->
 

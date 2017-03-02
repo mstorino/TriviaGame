@@ -28,6 +28,6 @@ p {font-size: 24px;
 	background-color: aqua;
 }
 
-/*.triviaScreen, .endScreen, .timerScreen {
+.triviaScreen, .endScreen, .timerScreen {
 	display: none;
-} */
+} 
