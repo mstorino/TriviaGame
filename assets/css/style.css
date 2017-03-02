@@ -1,0 +1,20 @@
+body {
+	color: black;
+}
+
+h1 {color: pink;
+	text-align: center;}
+
+p {font-size: 24px;
+	text-align: left;
+	}
+
+.pink {
+	background-color: pink;
+	}
+
+.triviaQuestions {
+	text-align: left;
+	}
+
+.row {border: 2px dashed pink;}
