@@ -2,8 +2,7 @@ body {
 	color: black;
 }
 
-h1 {color: pink;
-	text-align: center;}
+h1 {text-align: center;}
 
 p {font-size: 24px;
 	text-align: left;
@@ -13,8 +12,22 @@ p {font-size: 24px;
 	background-color: pink;
 	}
 
-.triviaQuestions {
-	text-align: left;
-	}
+.green {
+	background-color: green;
+}
 
-.row {border: 2px dashed pink;}
+.blue {
+	background-color: blue;
+}
+
+.yellow {
+	background-color: yellow;
+}
+
+.aqua {
+	background-color: aqua;
+}
+
+/*.triviaScreen, .endScreen, .timerScreen {
+	display: none;
+} */
