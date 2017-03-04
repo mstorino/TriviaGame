@@ -1,4 +1,5 @@
 // 1. start button
+
 	// 1.1 when start button is clicked show trivia game
 
 	// 	Add an on click listener to all elements that have the class .startBtn 
@@ -17,47 +18,49 @@
 		}); 
 
 
-// 2.  timer (5 sec) begins when start button is clicked
-// 		
-		$('.startBtn').on('click', function (startTimerGoing) {
-			var n = 5;
-			setTimeout(countDown, 1000);
+// 2.  click start button to trigger timer countdown 
 
-			function countDown(){
+// 	
+var n
+
+startBtnTimer();
+
+		function startBtnTimer() {
+			$('.startBtn').on('click', function (startTimerGoing) {
+				// var n = 5;
+				n = 4;
+				setTimeout(countDown, 1000);
+				countDown();	
+			});
+		}
+// 2.1 timer countdown function 
+
+		function countDown(){
 			   n--;
 			   if(n > 0){
 			      setTimeout(countDown,1000);
-			   }
-			   $(".timerScreen").html('<h2> Time Left: ' + n + ' Seconds!</h2>');
-				
-// QUESTION: I'M HAVING A SCOPE PROBLEM BECAUSE I CANNOT GET THE ALERTGAMEOVER TO WORK OUTSIDE OF THE COUNTDOWN FUNCTION
-// WHICH IS MAKING THIS MORE COMPLICATED THAN NECESSARY.  THOUGHTS?
+			       $(".timerScreen").html('<h2> Time Left: ' + n + ' Seconds!</h2>');
+			   } else {
+			  	 $(".timerScreen").html('<h2> Time is up!</h2>');
+			  	 compareAnswerValues();
+			  	 showScoreboard();
+			  	 hideTrivia();
+				}
+		}
 
-				function alertGameOver(){
-					if(n === 0){
-						$(".timerScreen").html('<h2> Time is up!</h2>');
-				
-					// add values to scoreboard
-					compareAnswerValues()
+// 2.2 display .endscreen when the time hits 0
 
-					// make trivia disapear
+		function hideTrivia(){
+			// make trivia disapear
 						$('.triviaScreen').css({
 						'display': 'none'
 						});
 
-					// make .endScreen appear
+			// make .endScreen appear
 						$('.endScreen').css({
 						'display': 'block'
 						});
-					}
 				}
-			
-			alertGameOver();
-
-			}
-
-			
-		});
 
 // 3. variable for wins, losses and unanswered
 
@@ -73,52 +76,102 @@ var correctAnswer1 = "Honda";
 	// 3.2 store information from answer 
 
 var userAnswer1
+var userAnswer2
 
 // 4. User's answer for each question is stored in userAnswer1 variable when Submit Button is Clicked
 
-// QUESTION: I CAN ONLY DO THIS ON WHEN THE SUBMIT BUTTON IS PUSHED.  IS THERE ANOTHER WAY TO GRAB THE DATA VALUE?
-
-	$('.btnA').on('click', function (storeTriviaBtnAnswer) {
+	$('.radioSelect').on('click', function (storeTriviaBtnAnswer) {
 			console.log ('Trivia Button Clicked!');	
 			userAnswer1 = $('input[name="question1"]:checked').val();
-			console.log(userAnswer1);
+			userAnswer2 = $('input[name="question2"]:checked').val();
+			createArrayOfUserAnswers();
+			// compareArray1();
+			// compareArray2();
 			compareAnswerValues();
 		}); 
 	
-// 5. compare correctAnswer1 to userAnswer1
-		function compareAnswerValues() {
-			i = 0;
-			if (userAnswer1 === undefined) {
-					unanswered = i + 1;
-					console.log ("unanswered:" + unanswered);
-				} else if (userAnswer1 === correctAnswer1){
-					win = i + 1;
-					console.log ("win:" + win);
-				} else {
-					loss = i + 1;
-					console.log ("losses:" + win);
+
+// // putting user answers into an array so that I can compare them to the correct answer 
+
+					var userAnswers = [];
+					var correctAnswerArray = ["Honda", "Volvo"];
+
+					function createArrayOfUserAnswers() {
+					    userAnswers.push(userAnswer1);
+					    userAnswers.push(userAnswer2);
+					}
+
+							// COMPARE TO ARRAY OF CORRECT ANSWERS
+
+				function compareAnswerValues() {
+
+					
+
+
+					function compareArray1(){
+						i = 0;
+						if (correctAnswerArray[0] === userAnswers[0])
+							{ win = i + 1;
+						}  else if (correctAnswerArray[0] !== userAnswers[0]){
+							loss = i + 1;
+						}
+					}
+					console.log("win");
+
+					function compareArray2(){
+						i = 0;
+						if (correctAnswerArray[1] === userAnswers[1])
+							{ win = i + 1;
+						}  else if (correctAnswerArray[0] !== userAnswers[0]){
+							loss = i + 1;
+						}
+					}
+					console.log("win");
 				}
-				showScoreboard();
-			}
+
+// 5. compare correctAnswer1 to userAnswer1
+			// function compareAnswerValues() {
+			// 	i = 0;
+
+			// 	if  (userAnswer1 === correctAnswer1) {
+			// 			win = i + 1;
+						
+			// 		} else if (userAnswer1 === undefined || 0){
+			// 			unanswered = i + 1;
+						
+			// 		} else {
+			// 			loss = i + 1;
+			// 		} 
+
+			// }
 				
 
 	// 5.1 add value of 4.1 as win, lose or unanswered
 		function showScoreboard() {
-			$(".scoreBoard").html('<h2>All Done!</h2><h3>Wins: ' + win + '</h3> <h3>Losses: ' + loss + '</h3>' + '<h3>Unanswerd: ' + unanswered + '</h3>');
+			$(".scoreBoard").html('<h2>All Done!</h2><h3>Wins: ' + win + '</h3> <h3>Losses: ' + loss + '</h3>' + '<h3>Unanswered: ' + unanswered + '</h3>');
 		}	
 
 // 6. end game [submit all values]
-	// 6.1 when setTimeOut = 0
+	// 6.1 when setTimeOut = 0; see 2.2 above
  
-	// 6.2 OR user submits answers [I think the instructions mean for it to happen automatically when the last question is answered]
-
 
 // 7. restart 
 		// 7.1 (empty values of trivia answers)
+
+
 		// 7.2 return to start landing 
 
-		$('.restartBtn').on('click', function () {
+			$('.restartBtn').on('click', function () {
+			
 			console.log ('restart buttonClicked!');	
+
+			$('.radioSelect').prop('checked', false);
+
+// THIS ISN'T RESETTING THE VARIABLES TO ZERO WHEN RESTART IS CLICKED. I THINK IT HAS TO DO WITH HOW I HANDLED THE UNASWERED PART OF THE SCOREBOARD
+			
+
+			$(".scoreBoard").empty();
+
 			$('.starterScreen').css({
 				'display': 'block'
 			});
@@ -127,10 +180,21 @@ var userAnswer1
 				'display': 'none'
 			});
 			
-			$('.endScreen').css({
-				'display': 'none'
-			});
+			// $('.endScreen').css({
+			// 	'display': 'none'
+			// });
+
+			resetVarToZero();
 		}); 
+
+function resetVarToZero(){
+			win = 0;
+			loss = 0;
+			unanswered = 0;
+			console.log(win);
+			console.log(loss);
+			console.log(unanswered);
+}
 
 console.log ("hi maggie");
 
