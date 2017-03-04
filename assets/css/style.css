@@ -1,5 +1,6 @@
 body {
 	color: #111111;
+	background-color: #001f3f;
 }
 
 h1 {text-align: center;
@@ -31,4 +32,18 @@ p {font-size: 24px;
 
 .triviaScreen, .endScreen, .timerScreen {
 	display: none;
+	padding: 0px 0px 30px 30px;
 } 
+
+.starterScreen {
+	padding: 30px 0px 30px 30px;
+}
+
+.timerScreen {
+	text-align: center;
+}
+
+.radio {
+	font-size: 16px;
+}
+
